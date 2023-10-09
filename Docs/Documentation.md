@@ -1,6 +1,7 @@
 # Требования к проекту
 
 <a name="intro"/>
+
 # 1 Введение
 <a name="appointment"/>
 
@@ -30,7 +31,7 @@
 ## 2.1 Интерфейс пользователя
 Главный экран  
 
-![Главный экран](https://github.com/tapo4e/Personal-music-player/blob/master/Docs/Mockups/Main.PNG)  
+![Главный экран](https://github.com/tapo4e/Personal-music-player/blob/master/Docs/Mockups/Main.png)  
 
 Окно проигрывателя.  
 
@@ -38,7 +39,7 @@
 
 Окно рвыбора папки с музыкой
 
-![Окно рвыбора папки с музыкой](https://github.com/tapo4e/Personal-music-player/blob/master/Docs/Mockups/FolderFindMusic.PNG)  
+![Окно рвыбора папки с музыкой](https://github.com/tapo4e/Personal-music-player/blob/master/Docs/Mockups/FolderFindMusic.png)  
 
 
 <a name="user_specifications"/>
