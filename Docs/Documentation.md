@@ -34,11 +34,11 @@
 
 Окно проигрывателя.  
 
-![Окно проигрывателя](https://github.com/tapo4e/Personal-music-player/blob/Docsmaster/Mockups/PlayMenu.png) 
+![Окно проигрывателя](https://github.com/tapo4e/Personal-music-player/blob/master/Docs/Mockups/PlayMenu.png) 
 
 Окно рвыбора папки с музыкой
 
-![Окно рвыбора папки с музыкой](https://github.com/tapo4e/Docs/Personal-music-player/blob/master/Mockups/FolderFindMusic.png)  
+![Окно рвыбора папки с музыкой](https://github.com/tapo4e/Personal-music-player/blob/master/Docs/Mockups/FolderFindMusic.png)  
 
 
 <a name="user_specifications"/>
