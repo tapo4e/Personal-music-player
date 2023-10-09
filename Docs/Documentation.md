@@ -31,7 +31,7 @@
 ## 2.1 Интерфейс пользователя
 Главный экран  
 
-![Главный экран](https://github.com/tapo4e/Personal-music-player/blob/master/Docs/Mockups/Main.png)  
+![Главный экран](https://github.com/tapo4e/Personal-music-player/blob/master/Docs/Mockups/MainActivity.png)  
 
 Окно проигрывателя.  
 
