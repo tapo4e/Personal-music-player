@@ -30,15 +30,15 @@
 ## 2.1 Интерфейс пользователя
 Главный экран  
 
-![Главный экран](https://github.com/tapo4e/Personal-music-player/blob/master/Docs/Mockups/Main.png)  
+![Главный экран](https://github.com/tapo4e/Personal-music-player/blob/master/Docs/Mockups/Main.PNG)  
 
 Окно проигрывателя.  
 
-![Окно проигрывателя](https://github.com/tapo4e/Personal-music-player/blob/master/Docs/Mockups/PlayMenu.png) 
+![Окно проигрывателя](https://github.com/tapo4e/Personal-music-player/blob/master/Docs/Mockups/PlayMenu.PNG) 
 
 Окно рвыбора папки с музыкой
 
-![Окно рвыбора папки с музыкой](https://github.com/tapo4e/Personal-music-player/blob/master/Docs/Mockups/FolderFindMusic.png)  
+![Окно рвыбора папки с музыкой](https://github.com/tapo4e/Personal-music-player/blob/master/Docs/Mockups/FolderFindMusic.PNG)  
 
 
 <a name="user_specifications"/>
