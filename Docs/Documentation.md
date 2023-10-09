@@ -35,11 +35,11 @@
 
 Окно проигрывателя.  
 
-![Окно проигрывателя](Mockups/PlayMenu.PNG) 
+![Окно проигрывателя](Mockups/Play.png) 
 
 Окно рвыбора папки с музыкой
 
-![Окно рвыбора папки с музыкой](Mockups/FolderFindMusic.png)  
+![Окно рвыбора папки с музыкой](Mockups/MusicInFolder.png)  
 
 
 <a name="user_specifications"/>
