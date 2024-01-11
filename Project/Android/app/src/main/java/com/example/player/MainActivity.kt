@@ -129,15 +129,6 @@ override fun onDestroy() {
         }
     }
     override fun onItemClick(position: Int) {
-//        if(mediaPlayer.isPlaying) {
-//            mediaPlayer.stop()
-//            mediaPlayer.reset()
-//        }
-//            mediaPlayer.setDataSource(listData[position])
-//            mediaPlayer.prepare()
-//            println(position)
-//            //button.setImageResource(android.R.drawable.ic_media_pause)
-//            mediaPlayer.start()
             Intent(this, MediaService::class.java).also {
                 it.action = MediaService.Actions.START.toString()
                 it.putExtra("dataSong", position)
