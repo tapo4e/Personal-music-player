@@ -1,14 +1,10 @@
 package com.example.player
 
 import android.app.Service
-import android.content.BroadcastReceiver
-import android.content.Context
 import android.content.Intent
-import android.content.IntentFilter
 import android.media.MediaPlayer
 import android.os.Handler
 import android.os.IBinder
-import android.widget.Toast
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 
 class MediaService : Service() {
@@ -22,7 +18,6 @@ class MediaService : Service() {
     override fun onBind(intent: Intent?): IBinder? {
         return null
     }
-
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         when(intent?.action){
             Actions.START.toString()-> start(intent.getIntExtra("dataSong",0))
@@ -43,18 +38,16 @@ class MediaService : Service() {
             }
             }
         mediaPlayer.setOnCompletionListener {
-            start(++position)
+            nextTrack()
         }
         trackPos()
         return  START_STICKY
     }
 
     private  fun start(dataSong:Int){
-        mediaPlayer.stop()
         mediaPlayer.reset()
         position=dataSong
         mediaPlayer.setDataSource(listData[dataSong])
-        println(listData[dataSong])
         mediaPlayer.prepare()
         mediaPlayer.start()
         intent.putExtra("trackName",listNames[position])
@@ -85,6 +78,7 @@ class MediaService : Service() {
     private fun nextTrack(){
             mediaPlayer.stop()
             mediaPlayer.reset()
+            if(position==listData.size-1) position=-1
             mediaPlayer.setDataSource(listData[++position])
             mediaPlayer.prepare()
             mediaPlayer.start()
@@ -105,7 +99,7 @@ class MediaService : Service() {
         LocalBroadcastManager.getInstance(this@MediaService).sendBroadcast(intent)
     }
     enum class Actions {
-        START,PLAY,PAUSE,NEXTTRACK,POSITION,PREVTRACK,DATALIST,NAMELIST
+        START,PLAY,PAUSE,NEXTTRACK,POSITION,PREVTRACK,DATALIST
     }
     private fun trackPos() {
             runnable= Runnable {

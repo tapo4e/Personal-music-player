@@ -1,5 +1,6 @@
 package com.example.player
 
+import android.annotation.SuppressLint
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
@@ -25,6 +26,7 @@ class NewTaskSheet : BottomSheetDialogFragment() {
     private lateinit var binding: FragmentNewTaskSheetBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         receiver = object : BroadcastReceiver() {
             override fun onReceive(context: Context?, intent: Intent?) {
                 if (intent != null && intent.action == "playStatus") {
@@ -50,6 +52,7 @@ class NewTaskSheet : BottomSheetDialogFragment() {
     }
 
 
+    @SuppressLint("RestrictedApi")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         if (arguments?.getStringArrayList("param_key")?.get(0)?.toBoolean() == true) {
@@ -114,6 +117,8 @@ class NewTaskSheet : BottomSheetDialogFragment() {
                 context?.startService(it)
             }
         }
+
+
         val bottomSheet: FrameLayout =
             dialog?.findViewById(com.google.android.material.R.id.design_bottom_sheet)!!
 
@@ -124,7 +129,8 @@ class NewTaskSheet : BottomSheetDialogFragment() {
         val behavior = BottomSheetBehavior.from(bottomSheet)
         behavior.apply {
             peekHeight = resources.displayMetrics.heightPixels // Pop-up height
-            state = BottomSheetBehavior.STATE_EXPANDED // Expanded state
+            state = BottomSheetBehavior.STATE_EXPANDED
+            // Expanded state
         }
         val filter = IntentFilter("playStatus")
         LocalBroadcastManager.getInstance(requireContext()).registerReceiver(receiver, filter)

@@ -12,6 +12,7 @@ import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.View
+import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.SearchView
 import android.widget.SeekBar
@@ -21,9 +22,11 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.app.ActivityCompat
+import androidx.core.view.marginBottom
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import java.util.Locale
 
 
@@ -38,7 +41,10 @@ class MainActivity : AppCompatActivity(),RecyclerViewInterface{
     private lateinit var trackName: TextView
     private  lateinit var searchView: androidx.appcompat.widget.SearchView
     private  lateinit var trackRecyclerViewAdapter:TrackRecyclerViewAdapter
-    @SuppressLint("Range", "MissingInflatedId")
+    private lateinit  var bottomSheetBehavior: BottomSheetBehavior<*>
+    private lateinit var  bottomSheet:View
+    private lateinit var   layoutParams:ViewGroup.MarginLayoutParams
+    @SuppressLint("Range", "MissingInflatedId", "CutPasteId")
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,7 +55,15 @@ class MainActivity : AppCompatActivity(),RecyclerViewInterface{
         seekBar.isEnabled = false
         playButton=findViewById(R.id.playButton)
         play=findViewById(R.id.playBar)
-         recyclerView=findViewById(R.id.recyclerView)
+        recyclerView=findViewById(R.id.recyclerView)
+        layoutParams = recyclerView.layoutParams as ViewGroup.MarginLayoutParams
+        recyclerView.layoutManager = LinearLayoutManager(this)
+
+        //Остановился тут доделать bottomsheet
+        bottomSheet=findViewById(R.id.playBar)
+        bottomSheetBehavior=BottomSheetBehavior.from(bottomSheet)
+        bottomSheetBehavior.state=BottomSheetBehavior.STATE_HIDDEN
+        bottomSheetBehavior.isDraggable=false
         ActivityCompat.requestPermissions(this,
             arrayOf(permission.READ_MEDIA_AUDIO,permission.FOREGROUND_SERVICE),1)
         val uri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI
@@ -65,10 +79,13 @@ class MainActivity : AppCompatActivity(),RecyclerViewInterface{
          trackRecyclerViewAdapter= TrackRecyclerViewAdapter(this,list,this)
         recyclerView.adapter=trackRecyclerViewAdapter
         recyclerView.layoutManager= LinearLayoutManager(this)
+        //Open buttomsheet
         play.setOnClickListener{
             val newTaskSheetFragment = NewTaskSheet.newInstance(trackInfo)
             newTaskSheetFragment.show(supportFragmentManager, "newTaskTag")
         }
+
+
         LocalBroadcastManager.getInstance(this).registerReceiver(receiver, IntentFilter("playStatus"))
         Intent(this, MediaService::class.java).also {
             it.action = MediaService.Actions.DATALIST.toString()
@@ -87,6 +104,7 @@ class MainActivity : AppCompatActivity(),RecyclerViewInterface{
             }
 
         })
+
     }
     private fun filterList(query:String?){
         if(query!=null){
@@ -111,6 +129,7 @@ override fun onDestroy() {
         list.add(track)
     }
     fun buttonPlayClick(view : View){
+
         if(trackInfo[0]!="0") {
             println(trackInfo[0])
             if (!trackInfo[0].toBoolean()) {
@@ -127,12 +146,16 @@ override fun onDestroy() {
                 }
             }
         }
+//
+//
     }
     override fun onItemClick(position: Int) {
             Intent(this, MediaService::class.java).also {
                 it.action = MediaService.Actions.START.toString()
                 it.putExtra("dataSong", position)
                 startService(it)
+                bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED)
+                layoutParams.bottomMargin=350
 
         }
 
